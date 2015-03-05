@@ -16,6 +16,7 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
+      console.log("We are connected!");
       testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
@@ -80,8 +81,11 @@
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
+      console.log(response);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
+      document.getElementById("login_name").value = response.name;
+      document.getElementById("login_email").value = response.email;
     });
   }
 </script>
@@ -97,6 +101,14 @@
 
 <div id="status">
 </div>
+
+<form method="POST" action="/login">
+  Name: <input type="text" name="name" id="login_name" /> </br>
+  Email: <input type="text" name="email" id="login_email" /> </br>
+  PW: <input type="text" name="pw" /> </br>
+  <input type="submit" name="submit" value="submit" />
+
+</form>
 
 </body>
 </html>
