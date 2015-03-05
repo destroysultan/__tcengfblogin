@@ -1,0 +1,1 @@
+web: DEBUG=in-class ./bin/www
